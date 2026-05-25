@@ -5,8 +5,17 @@ A one-page mobile tap game. A glowing colored circle appears at a random positio
 ## Stack
 
 - **Vite 6** + **TypeScript 5** + **Tailwind CSS v4** (via the official `@tailwindcss/vite` plugin)
-- **Supabase JS v2** — magic-link auth, one table `tap_scores`, per-user RLS
+- **Supabase JS v2** — email + password auth, one table `tap_scores`, per-user RLS
 - No framework (vanilla TS modules) — every screen is a small render-to-DOM function
+
+## Auth flow
+
+Sign-in and sign-up share one screen with a tab toggle:
+
+- **Sign up** calls `supabase.auth.signUp({ email, password })`. If the project has email confirmation enabled (Supabase default), the user sees a "check your inbox" message and must click the confirmation link before they can sign in. If email confirmation is disabled in the dashboard, the new user is signed in immediately.
+- **Sign in** calls `supabase.auth.signInWithPassword({ email, password })`. Unconfirmed accounts get a clear "confirm your email first" message instead of a raw error.
+
+To disable email confirmation for a friction-free sign-up flow, go to **Supabase Dashboard → Authentication → Sign In / Up Providers → Email** and turn off "Confirm email."
 
 ## Getting started
 

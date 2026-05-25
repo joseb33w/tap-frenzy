@@ -1,6 +1,6 @@
 # Goal
 
-Build **Tap Frenzy** — a one-page mobile tap game with Supabase magic-link auth and a top-5 personal + top-10 global leaderboard.
+Build **Tap Frenzy** — a one-page mobile tap game with Supabase email + password auth and a top-5 personal + top-10 global leaderboard.
 
 Gameplay:
 - Glowing colored circle spawns at a random screen position.
@@ -26,7 +26,7 @@ Gameplay:
     ├── main.ts                 # bootstraps app + screen routing
     ├── style.css               # @import "tailwindcss"
     ├── screens/
-    │   ├── AuthScreen.ts
+    │   ├── AuthScreen.ts          # email + password sign-in / sign-up tabs
     │   ├── HomeScreen.ts
     │   ├── GameScreen.ts
     │   └── LeaderboardScreen.ts

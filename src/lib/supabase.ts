@@ -37,15 +37,29 @@ export async function getCurrentSession(): Promise<Session | null> {
   return data.session;
 }
 
-export async function sendMagicLink(email: string): Promise<{ error: string | null }> {
-  const redirectTo = window.location.origin + window.location.pathname;
-  const { error } = await supabase.auth.signInWithOtp({
+export type SignUpResult =
+  | { kind: 'signed-in' }
+  | { kind: 'confirm-email' }
+  | { kind: 'error'; message: string };
+
+export async function signUpWithPassword(email: string, password: string): Promise<SignUpResult> {
+  const { data, error } = await supabase.auth.signUp({
     email,
+    password,
     options: {
-      emailRedirectTo: redirectTo,
-      shouldCreateUser: true,
+      emailRedirectTo: window.location.origin + window.location.pathname,
     },
   });
+  if (error) return { kind: 'error', message: error.message };
+  if (data.session) return { kind: 'signed-in' };
+  return { kind: 'confirm-email' };
+}
+
+export async function signInWithEmailPassword(
+  email: string,
+  password: string,
+): Promise<{ error: string | null }> {
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
   return { error: error?.message ?? null };
 }
 

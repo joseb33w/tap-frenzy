@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-bg-deep: #07070f;
+  --color-bg-elev: #11111e;
+  --color-accent: #f43f5e;
+  --color-accent-2: #fb923c;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-sans);
+  background: radial-gradient(1200px 800px at 20% 0%, #1a0f2e 0%, #07070f 60%);
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f43f5e 0%, #fb923c 100%);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 10px 30px -10px rgba(244, 63, 94, 0.55);
+  transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card {
+  background: rgba(20, 20, 32, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.input {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  font-size: 1rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.input:focus {
+  outline: none;
+  border-color: rgba(244, 63, 94, 0.6);
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.2);
+}
+
+.tap-circle {
+  position: absolute;
+  border-radius: 9999px;
+  cursor: pointer;
+  transform-origin: center;
+  will-change: transform, opacity;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+.tap-pop {
+  animation: pop 220ms ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.shake {
+  animation: shake 300ms ease;
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-30px); opacity: 0; }
+}
+.float-up {
+  animation: float-up 600ms ease-out forwards;
+  pointer-events: none;
+}

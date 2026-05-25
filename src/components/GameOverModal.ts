@@ -16,7 +16,7 @@ export function renderGameOverModal(state: GameState, status: SubmitStatus, subm
         : 'Round over';
   let submitLine = '';
   if (status === 'pending') {
-    submitLine = '<p class="text-xs text-slate-400 mt-3">Saving your score40</p>';
+    submitLine = '<p class="text-xs text-slate-400 mt-3">Saving your score…</p>';
   } else if (status === 'saved') {
     submitLine = '<p class="text-xs text-emerald-400 mt-3">Score saved.</p>';
   } else if (status === 'error') {
